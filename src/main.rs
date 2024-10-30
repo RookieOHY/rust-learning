@@ -2,13 +2,18 @@
 hello rust
 */
 /**①标准的rust主程序：
-    程序命名规范：xxx_xxx.rs
+    程序命名规范：xxx_xxx.rs（单词和单词之前使用下划线）
     一些命令：
         查看rust版本：rustc --version 或者-V
+            结果：rustc 1.65.0-nightly (e1b28cd2f 2022-08-19)
+            备注：版本信息 稳定版本|先行版本 commit hash 值 年月日
         程序编译：rustc xxx.rs
             编译：同目录下生成 xxx.exe 可执行文件
             运行：main 或者 main.exe即可
             备注：rustc只适合简单的编译 大项目使用Cargo
+        查看rust的doc: rustup doc
+            结果：会在浏览器打开对象的文档（安装rust时就有了）
+            示例：file:///E:/Rust/.rustup/toolchains/nightly-x86_64-pc-windows-gnu/share/doc/rust/html/index.html
     ②Cargo
     含义：包管理工具
     作用：代码构建、下载库
@@ -39,5 +44,6 @@ hello rust
 
 */
 fn main() {
+    //println!
     println!("Hello, world!");
 }

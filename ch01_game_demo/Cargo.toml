@@ -8,4 +8,4 @@ edition = "2018"
 [dependencies]
 #crate desc is 随机数库（下载依赖会被该库的上层依赖下载一遍，如Rand依赖上层的libc.）
 #下载的是0.7.X（默认是最新版本）
-rand = "^0.7.0"
+rand = "0.8.5"
