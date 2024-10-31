@@ -8,11 +8,11 @@ fn it_adds_two() {
 }
 
 #[test]
-fn test(){
+fn test() {
     let query = "Rust";
     let content = "\
     Rust:
     safe,fast,productive.
     pick three.";
-    assert_eq!(vec!["Rust:"],search(query,content));
+    assert_eq!(vec!["Rust:"], search(query, content));
 }

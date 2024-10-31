@@ -8,5 +8,5 @@ authors = ["RookieOHY<204130199@qq.com>"]
 [workspace]
 members = [
     "ch01_game_demo"
-, "ch02_os", "ch03_bi_bao", "ch05_crate_cargo", "ch04_iter"]
+, "ch02_os", "ch03_bi_bao", "ch05_crate_cargo", "ch04_iter", "ch06_ptr"]
 [dependencies]

@@ -8,7 +8,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 
     let result = if config.case_sensitive {
         search(&config.query, &content)
-    }else {
+    } else {
         search_case_insensitive(&config.query, &content)
     };
 
@@ -19,20 +19,18 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-
-pub struct Config{
-    pub query:String,
-    pub filename:String,
+pub struct Config {
+    pub query: String,
+    pub filename: String,
     pub case_sensitive: bool,
 }
 
-impl Config{
+impl Config {
     pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
-
         // 忽略第一个
         args.next();
 
-        if args.len() < 3{
+        if args.len() < 3 {
             return Err("没有足够的参数");
         }
 
@@ -40,25 +38,27 @@ impl Config{
         // let query = args[1].clone();
         // let filename = args[2].clone();
 
-        let query = match args.next(){
+        let query = match args.next() {
             Some(arg) => arg,
             None => return Err("没有参数-query"),
         };
 
-        let filename = match args.next(){
+        let filename = match args.next() {
             Some(arg) => arg,
             None => return Err("没有参数-filename"),
         };
 
-
-
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
-        Ok(Config{query,filename,case_sensitive})
+        Ok(Config {
+            query,
+            filename,
+            case_sensitive,
+        })
     }
 }
 
-pub fn search<'a>(query:&str,contents: &'a str) -> Vec<&'a str>{
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     // let mut result = Vec::new();
     // for line in contents.lines() {
     //     if line.contains(query){
@@ -67,9 +67,7 @@ pub fn search<'a>(query:&str,contents: &'a str) -> Vec<&'a str>{
     // }
     // result
     contents.lines().filter(|e| e.contains(query)).collect()
-
 }
-
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let query = query.to_lowercase();
