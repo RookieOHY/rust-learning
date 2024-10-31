@@ -27,12 +27,31 @@ pub struct Config{
 }
 
 impl Config{
-    pub fn new(args:&[String]) -> Result<Config, &'static str> {
+    pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
+
+        // 忽略第一个
+        args.next();
+
         if args.len() < 3{
             return Err("没有足够的参数");
         }
-        let query = args[1].clone();
-        let filename = args[2].clone();
+
+        // clone 低效的，需要改进
+        // let query = args[1].clone();
+        // let filename = args[2].clone();
+
+        let query = match args.next(){
+            Some(arg) => arg,
+            None => return Err("没有参数-query"),
+        };
+
+        let filename = match args.next(){
+            Some(arg) => arg,
+            None => return Err("没有参数-filename"),
+        };
+
+
+
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
         Ok(Config{query,filename,case_sensitive})
@@ -40,13 +59,15 @@ impl Config{
 }
 
 pub fn search<'a>(query:&str,contents: &'a str) -> Vec<&'a str>{
-    let mut result = Vec::new();
-    for line in contents.lines() {
-        if line.contains(query){
-            result.push(line)
-        }
-    }
-    result
+    // let mut result = Vec::new();
+    // for line in contents.lines() {
+    //     if line.contains(query){
+    //         result.push(line)
+    //     }
+    // }
+    // result
+    contents.lines().filter(|e| e.contains(query)).collect()
+
 }
 
 

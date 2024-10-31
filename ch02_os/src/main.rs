@@ -7,11 +7,11 @@ use std::{env, fs, process};
 use std::error::Error;
 // use ch02_os;
 fn main() {
-    let args:Vec<String> = env::args().collect();
+    // let args:Vec<String> = env::args().collect();
     // println!("{:?}",args); // ["E:\\RustProjects\\rust-learning\\target\\debug\\ch02_os.exe", "a", "b"]
     // let query = &args[1];
     // let filename = &args[2];
-    let config = ch02_os::Config::new(&args).unwrap_or_else(|err|{
+    let config = ch02_os::Config::new(env::args()).unwrap_or_else(|err|{
         println!("输入参数有误:{}",err);
         process::exit(1)
     });
